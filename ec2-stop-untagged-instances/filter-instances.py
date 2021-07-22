@@ -28,16 +28,15 @@ for instance in instances:
     try:
         if instance['Tags']is None: 
             to_keep_notag.append(instance['InstanceId'])
+        for tag in instance['Tags']:
+            if tag['Key'] == TAGNAME and tag['Value'] == CREATEDBY:
+                to_stop.append(instance['InstanceId'])
         else:
-            for tag in instance['Tags']:
-                if tag['Key'] == TAGNAME and tag['Value'] == CREATEDBY:
-                    to_stop.append(instance['InstanceId'])
-                else:
-                    to_keep.append(instance['InstanceId'])
+            to_keep.append(instance['InstanceId'])
     except Exception as e:
             print('\nEC2 instance {0} not considered for termination because of a processing error: {1}'.format(instance['InstanceId'], e))
 
-print('\nFound {0} instances with no tags, have a look on these instances:'.format(len(to_keep_notag)))
+print('\n\nFound {0} instances with no tags, have a look on these instances:'.format(len(to_keep_notag)))
 print(*[instance_id for instance_id in to_keep_notag], sep = "\n") 
 
 print('\nFound {0} instances without the tag createdby = ' + CREATEDBY + ' to keep:'.format(len(to_keep)))
