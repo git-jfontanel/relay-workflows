@@ -31,10 +31,10 @@ for instance in instances:
     except Exception as e:
             print('\nEC2 instance {0} not considered for termination because of a processing error: {1}'.format(instance['InstanceId'], e))
 
-print('\nFound {} instances without the tag createdby = ' + CREATEDBY + ' to keep:'.format(len(to_keep)))
+print('\nFound {0} instances without the tag createdby = ' + CREATEDBY + ' to keep:'.format(len(to_keep)))
 print(*[instance_id for instance_id in to_keep], sep = "\n") 
 
-print('\nFound {} instances with the tag created_by = ' + CREATEDBY + ' to stop:'.format(len(to_stop)))
+print('\nFound {0} instances with the tag created_by = ' + CREATEDBY + ' to stop:'.format(len(to_stop)))
 print(*[instance_id for instance_id in to_stop], sep = "\n") 
 
 relay.outputs.set('instanceIDs', to_stop)
