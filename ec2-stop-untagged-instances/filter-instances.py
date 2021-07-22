@@ -31,7 +31,7 @@ for instance in instances:
     except Exception as e:
             print('\nEC2 instance {0} not considered for termination because of a processing error: {1}'.format(instance['InstanceId'], e))
 
-print('\nFound {0} instances without the tag createdby = {1} ) to keep:'.format(len(to_keep)), CREATEDBY)
+print('\nFound {0} instances without the tag createdby = {1} to keep:'.format(len(to_keep)), CREATEDBY)
 print(*[instance_id for instance_id in to_keep], sep = "\n") 
 
 print('\nFound {0} instances with the tag created_by = {1} to stop:'.format(len(to_stop)), CREATEDBY)
