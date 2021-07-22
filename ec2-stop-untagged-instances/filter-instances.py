@@ -17,6 +17,7 @@ relay = Interface()
 
 # Tag names (user-configurable)
 CREATEDBY = relay.get(D.CreatedBy)
+TAGNAME = relay.get(D.TagName)
 
 to_stop = []
 to_keep = []
@@ -24,11 +25,12 @@ to_keep = []
 instances = filter(lambda i: i['State']['Name'] == 'running', relay.get(D.instances))
 for instance in instances:
     try:
-        if instance['Tags'] == CREATEDBY: 
-            print (instance['Tags'])
-            to_stop.append(instance['InstanceId'])
-        else:
+        if instance['Tags']is None: 
             to_keep.append(instance['InstanceId'])
+        else:
+            for tag in instance['Tags']:
+                if tag['Key'] == TAGNAME and tag['Value'] == CREATEDBY:
+                    to_keep.append(instance['InstanceId'])
     except Exception as e:
             print('\nEC2 instance {0} not considered for termination because of a processing error: {1}'.format(instance['InstanceId'], e))
 
