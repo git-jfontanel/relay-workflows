@@ -23,6 +23,7 @@ to_stop = []
 to_keep = []
 to_keep_notag = []
 
+instances = relay.get(D.instances)
 for instance in instances:
     try:
         if instance['Tags']is None: 
