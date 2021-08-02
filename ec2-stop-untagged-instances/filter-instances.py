@@ -28,7 +28,7 @@ for instance in instances:
         if instance['Tags']is None: 
             to_keep_notag.append(instance['InstanceId'])
         for tag in instance['Tags']:
-            if tag['Key'] == TAGNAME  
+            if tag['Key'] == TAGNAME:
                 if tag['Value'] == TAGVALUE:
                     to_stop.append(instance['InstanceId'])
             else:
