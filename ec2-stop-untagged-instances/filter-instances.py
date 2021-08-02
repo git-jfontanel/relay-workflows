@@ -32,8 +32,8 @@ for instance in instances:
             if tag['Key'] == TAGNAME:
                 if tag['Value'] == TAGVALUE:
                     to_stop.append(instance['InstanceId'])
-            else:
-                to_keep.append(instance['InstanceId'])
+        else:
+            to_keep.append(instance['InstanceId'])
     except Exception as e:
             print('\nEC2 instance {0} not considered for termination because of a processing error: {1}'.format(instance['InstanceId'], e))
 
