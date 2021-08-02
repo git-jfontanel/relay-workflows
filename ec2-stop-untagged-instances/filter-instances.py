@@ -25,23 +25,23 @@ to_keep_notag = []
 
 instances = relay.get(D.instances)
 for instance in instances:
-    try:
-        if instance['Tags']is None: 
-            to_keep_notag.append(instance['InstanceId'])
+#    try:
+#        if instance['Tags']is None: 
+#            to_keep_notag.append(instance['InstanceId'])
         for tag in instance['Tags']:
             if tag['Key'] == TAGNAME:
                 if tag['Value'] == TAGVALUE:
                     to_stop.append(instance['InstanceId'])
-        else:
-            to_keep.append(instance['InstanceId'])
-    except Exception as e:
-            print('\nEC2 instance {0} not considered for termination because of a processing error: {1}'.format(instance['InstanceId'], e))
+#        else:
+#            to_keep.append(instance['InstanceId'])
+#    except Exception as e:
+#            print('\nEC2 instance {0} not considered for termination because of a processing error: {1}'.format(instance['InstanceId'], e))
 
-print('\n\nFound {} instances with no tags, check these instances:'.format(len(to_keep_notag)))
-print(*[instance_id for instance_id in to_keep_notag], sep = "\n") 
+#print('\n\nFound {} instances with no tags, check these instances:'.format(len(to_keep_notag)))
+#print(*[instance_id for instance_id in to_keep_notag], sep = "\n") 
 
-print('\nFound {} instances without the tag ' + TAGNAME + '  = ' + TAGVALUE + ' to keep:'.format(len(to_keep)))
-print(*[instance_id for instance_id in to_keep], sep = "\n") 
+#print('\nFound {} instances without the tag ' + TAGNAME + ' = ' + TAGVALUE + ' to keep:'.format(len(to_keep)))
+#print(*[instance_id for instance_id in to_keep], sep = "\n") 
 
 print('\nFound {} instances with the tag ' + TAGNAME + ' = ' + TAGVALUE + ' to stop:'.format(len(to_stop)))
 print(*[instance_id for instance_id in to_stop], sep = "\n") 
