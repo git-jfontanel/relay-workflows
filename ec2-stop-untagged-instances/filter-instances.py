@@ -43,7 +43,7 @@ for instance in instances:
 #print('\nFound {} instances without the tag ' + TAGNAME + ' = ' + TAGVALUE + ' to keep:'.format(len(to_keep)))
 #print(*[instance_id for instance_id in to_keep], sep = "\n") 
 
-print("\nFound {0} instances with the tag {1} = {2} to stop:".format(len(to_stop)),TAGNAME, TAGVALUE)
+print("\nFound {0} instances with the tag {1} = {2} to stop:".format(len(to_stop),TAGNAME, TAGVALUE))
 print(*[instance_id for instance_id in to_stop], sep = "\n") 
 
 relay.outputs.set('instanceIDs', to_stop)
